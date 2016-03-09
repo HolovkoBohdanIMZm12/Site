@@ -8,6 +8,8 @@
 
 <body>
 	<h1>GIT lesson</h1>
+	<p>some text</p>p>
+	<p>bla-bla-bla</p>p>
 </body>
 
 </html>
