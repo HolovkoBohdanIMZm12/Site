@@ -25,15 +25,15 @@ public class Task_6
 		//============
 		
 						
-		System.out.println("Welcome to simple java console interprate.");
-		System.out.println("Select the appropriate command:\n");
-		System.out.print("Press 'ping' to selest the command: ping");
-		System.out.print("\nPress 'echo' to selest the command: echo");
-		System.out.print("\nPress 'login' to selest the command: login");
-		System.out.print("\nPress 'list' to selest the command: list");
-		System.out.print("\nPress 'msg' to selest the command: msg");
-		System.out.print("\nPress 'file' to selest the command: file");
-		System.out.print("\nPress 'exit' to selest the command: exit");
+		System.out.println("Welcome to simple java console interprate."
+				 + "Select the appropriate command:\n" 
+				 + "Press 'ping' to selest the command: ping" 
+				 + "\nPress 'echo' to selest the command: echo" 
+				 + "\nPress 'login' to selest the command: login: <login name>, <login password>" 
+				 + "\nPress 'list' to selest the command: list"
+				 + "\nPress 'msg' to selest the command: msg: <name of the msg>, <text of the msg>"
+				 + "\nPress 'file' to selest the command: file: <username>, <filename>"
+				 + "\nPress 'exit' to selest the command: exit");
 		
 		//============
 		
