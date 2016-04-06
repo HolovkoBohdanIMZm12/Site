@@ -64,8 +64,6 @@ public class Main {
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader (isr);
 			
-			
-			
 			Timer timeToReceiveMsg = new Timer();
 			boolean isClosed = false;
 			boolean isTimerStarted = false;

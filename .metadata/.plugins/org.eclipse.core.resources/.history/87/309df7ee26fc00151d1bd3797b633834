@@ -53,18 +53,27 @@ public class Main {
 		try
 		{		
 			
+//			Socket socket = new Socket("lv.rst.uk.to", 151);
+//			socket_message = new Socket("lv.rst.uk.to", 151); 
+//			
+//			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+//			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));   
+//			PrintWriter outnewMessage = new PrintWriter(socket_message.getOutputStream(),true);
+//			BufferedReader innewMessage = new BufferedReader(new InputStreamReader(socket_message.getInputStream()));
+//			
+//			InputStreamReader isr = new InputStreamReader(System.in);
+//			BufferedReader br = new BufferedReader (isr);
+			
 			Socket socket = new Socket("lv.rst.uk.to", 151);
-			socket_message = new Socket("lv.rst.uk.to", 151); 
-			
+			System.out.printf("Socket connection established%n");
+			socket_message = new Socket("lv.rst.uk.to", 151);   
+			System.out.printf("Socket connection established%n");
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));   
-			PrintWriter outnewMessage = new PrintWriter(socket_message.getOutputStream(),true);
-			BufferedReader innewMessage = new BufferedReader(new InputStreamReader(socket_message.getInputStream()));
-			
-			InputStreamReader isr = new InputStreamReader(System.in);
-			BufferedReader br = new BufferedReader (isr);
-			
-			
+					   BufferedReader in = new BufferedReader(new InputStreamReader(
+				                socket.getInputStream()));   
+					  PrintWriter outnewMessage = new PrintWriter(socket_message.getOutputStream(),true);
+					     BufferedReader innewMessage = new BufferedReader(new InputStreamReader(
+					  socket_message.getInputStream()));
 			
 			Timer timeToReceiveMsg = new Timer();
 			boolean isClosed = false;
