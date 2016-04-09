@@ -1,0 +1,32 @@
+package com.SemRMI;
+
+import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+import lpi.server.rmi.IServer;
+
+public class Main {
+
+	public static void main(String[] args) throws NotBoundException 
+	{
+		
+		try
+		{
+			
+			Registry registry = LocateRegistry.getRegistry("lv.rst.uk.to", 152);
+			proxy = (IServer)registry.lookup(IServer.RMI_SERVER_NAME);
+		}
+		catch(IOException exc)
+		{
+			System.out.println("IOException!!");
+		}
+		
+		
+		
+	}
+	
+	static IServer proxy;
+	static String sessionID = null;
+}
