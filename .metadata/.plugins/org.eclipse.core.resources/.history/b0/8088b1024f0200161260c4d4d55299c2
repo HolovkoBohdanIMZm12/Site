@@ -117,7 +117,7 @@ public class Main
 									{
 										isTimerStarted = true;
 									}
-									timeToReceiveMsg.schedule(new MyFirstTimerTask(), 0, 1000);
+									timeToReceiveMsg.schedule(new MyTimerTask(), 0, 1000);
 									
 								}
 								catch(RemoteException Rexc)
@@ -142,7 +142,7 @@ public class Main
 					case "ShowList":
 								try
 								{
-									TimerTask task = new MySecondTimerTask();
+									TimerTask task = new SecondMyTimerTask();
 									Timer timer = new Timer();
 									timer.schedule(task, 5000, 22000);
 									task.run();
@@ -235,7 +235,7 @@ public class Main
 	
 	//============
 	
-	public static class MyFirstTimerTask extends TimerTask 
+	public static class MyTimerTask extends TimerTask 
 	{
 		@Override
 		public void run() 
@@ -269,7 +269,7 @@ public class Main
 	
 	//------
 	
-	public static class MySecondTimerTask extends TimerTask
+	public static class SecondMyTimerTask extends TimerTask
 	{
 
 		@Override
