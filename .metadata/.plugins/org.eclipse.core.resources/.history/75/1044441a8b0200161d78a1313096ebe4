@@ -279,9 +279,10 @@ public class Main
 		{
 			try
 			{
+				System.out.println("List updates:");
 				
 				Date date = new Date();
-				System.out.println("List updated: " + date.toString());
+				System.out.println(date.toString());
 				System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
 				System.out.println("------------------------------------------");
 			}

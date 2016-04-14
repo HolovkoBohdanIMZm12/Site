@@ -13,7 +13,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import lpi.server.rmi.IServer;
@@ -142,12 +141,18 @@ public class Main
 					case "ShowList":
 								try
 								{
+									sessionID = proxy.login(arr[1], arr[2]);
+									while(sessionID != proxy.login(arr[1], arr[2]))
+									{
+										
+									
 									
 									TimerTask task = new MySecondTimerTask();
 									Timer timer = new Timer();
 									timer.schedule(task, 7000, 17000);
 									task.run();
-									
+									task.wait();
+									}								
 //									System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
 																		
 								}
@@ -279,11 +284,8 @@ public class Main
 		{
 			try
 			{
-				
-				Date date = new Date();
-				System.out.println("List updated: " + date.toString());
 				System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
-				System.out.println("------------------------------------------");
+			
 			}
 			catch (ArgumentException e) 
 			{
