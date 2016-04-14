@@ -16,14 +16,28 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.omg.Messaging.SyncScopeHelper;
+
+import com.SemRMI.Some_Imp.RunMeTask;
+
 import lpi.server.rmi.IServer;
+import lpi.server.rmi.IServer.ArgumentException;
 import lpi.server.rmi.IServer.FileInfo;
 import lpi.server.rmi.IServer.Message;
+import lpi.server.rmi.IServer.ServerException;
 
 public class Main 
 {
 
-	public static void main(String[] args) throws NotBoundException 
+	//======> Static values:
+	
+		static IServer proxy;
+		static String sessionID = null;
+	
+	//======
+	
+	@SuppressWarnings("unused")
+	public static void main(String[] args) throws NotBoundException, ArgumentException, ServerException, RemoteException 
 	{
 		
 		System.out.println("Welcome to simple java console interprate."
@@ -60,7 +74,8 @@ public class Main
 			boolean isClosed = false;
 			boolean isTimerStarted = false;
 			
-			Some_Imp imp;
+			Some_Imp imp = null;
+			
 			//=======
 			
 			while(!isClosed)
@@ -114,11 +129,28 @@ public class Main
 					case "list":
 								try
 								{
-									System.out.println("List of active users:" + Arrays.toString(proxy.listUsers(sessionID)));
+//									System.out.println(proxy.listUsers(sessionID));
+									System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
+									
 								}
 								catch(RemoteException Rexc)
 								{
 									System.out.println("RemoteException!!");
+								}
+								break;
+								
+					case "ShowList":
+								try
+								{
+									TimerTask task = new SecondMyTimerTask();
+									Timer timer = new Timer();
+									timer.schedule(task, 5000, 22000);
+									task.run();
+	//								System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
+								}
+								catch(Exception exc)
+								{
+									System.out.println("Exception!!");
 								}
 								break;
 								
@@ -166,6 +198,10 @@ public class Main
 			}
 			
 		}
+		catch(ArgumentException exc)
+		{
+			System.out.println("ArgumentException!!");
+		}
 		catch(IOException exc)
 		{
 			System.out.println("IOException!!");
@@ -177,13 +213,10 @@ public class Main
 		
 		
 		
+		
 	}
 	
-	//======> Static values:
-	
-	static IServer proxy;
-	static String sessionID = null;
-	
+		
 	//======> Static methods:
 	
 	static String[] partsout(String[] array, int index) 
@@ -196,10 +229,15 @@ public class Main
 		return result;
 	}
 	
+	//---
+	
+	
+	
 	//============
 	
 	public static class MyTimerTask extends TimerTask 
 	{
+		@Override
 		public void run() 
 		{
 			try 
@@ -229,7 +267,33 @@ public class Main
 		}
 	}
 	
+	//------
 	
+	public static class SecondMyTimerTask extends TimerTask
+	{
+
+		@Override
+		public void run() 
+		{
+			try 
+			{
+				System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
+			} 
+			catch (ArgumentException e) 
+			{
+				System.out.println("ArgumentException!!");
+			} 
+			catch (ServerException e) 
+			{
+				System.out.println("ServerException!!");
+			} 
+			catch (RemoteException e) 
+			{
+				System.out.println("RemoteException!!");
+			}
+		}
+		
+	}
 	
 	//======
 }
