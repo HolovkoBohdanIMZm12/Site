@@ -15,6 +15,11 @@ import java.rmi.registry.Registry;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.omg.Messaging.SyncScopeHelper;
+
+import com.SemRMI.Some_Imp.RunMeTask;
+
 import lpi.server.rmi.IServer;
 import lpi.server.rmi.IServer.ArgumentException;
 import lpi.server.rmi.IServer.FileInfo;
@@ -45,10 +50,7 @@ public class Main
 				 + "\nPress 'file' to selest the command: file: <username>, <filename>"
 				 + "\nPress 'exit' to selest the command: exit");
 
-		System.out.println("");
-		
 		//============
-		
 
 		System.out.println();
 		System.out.println("\nEnter the command: ");
@@ -142,7 +144,7 @@ public class Main
 								{
 									TimerTask task = new MySecondTimerTask();
 									Timer timer = new Timer();
-									timer.schedule(task, 7000, 22000);
+									timer.schedule(task, 5000, 22000);
 									task.run();
 	//								System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
 								}
@@ -273,7 +275,7 @@ public class Main
 		@Override
 		public void run() 
 		{
-			try
+			try 
 			{
 				System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
 			} 
