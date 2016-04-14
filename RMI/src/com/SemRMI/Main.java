@@ -28,6 +28,7 @@ public class Main
 	
 		static IServer proxy;
 		static String sessionID = null;
+		
 	
 	//======
 	
@@ -45,7 +46,6 @@ public class Main
 				 + "\nPress 'file' to selest the command: file: <username>, <filename>"
 				 + "\nPress 'exit' to selest the command: exit");
 
-		System.out.println("");
 		
 		//============
 		
@@ -54,6 +54,7 @@ public class Main
 		System.out.println("\nEnter the command: ");
 
 		//============
+		
 		
 				
 		try
@@ -142,9 +143,11 @@ public class Main
 								{
 									TimerTask task = new MySecondTimerTask();
 									Timer timer = new Timer();
-									timer.schedule(task, 7000, 22000);
+									timer.schedule(task, 7000, 18000);
 									task.run();
-	//								System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
+									
+//									System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
+																		
 								}
 								catch(Exception exc)
 								{
@@ -211,7 +214,6 @@ public class Main
 		
 		
 		
-		
 	}
 	
 		
@@ -231,7 +233,7 @@ public class Main
 	
 	
 	
-	//============
+	//============> static classes:
 	
 	public static class MyFirstTimerTask extends TimerTask 
 	{
@@ -245,9 +247,9 @@ public class Main
 				{
 					System.out.println("Incoming Message " + ReceivedMessage.getMessage() + " from " + ReceivedMessage.getSender());
 				}
-				FileInfo ReceivedFile = proxy.receiveFile(sessionID);
 				
-				if (ReceivedFile != null) 
+				FileInfo ReceivedFile = proxy.receiveFile(sessionID);
+				if(ReceivedFile != null) 
 				{
 					Path path = Paths.get("D:\\Desktop ", ReceivedFile.getFilename());
 					Path content = Files.write(path, ReceivedFile.getFileContent(), StandardOpenOption.CREATE);
@@ -276,7 +278,8 @@ public class Main
 			try
 			{
 				System.out.println("List users: " + Arrays.toString(proxy.listUsers(sessionID)));
-			} 
+			
+			}
 			catch (ArgumentException e) 
 			{
 				System.out.println("ArgumentException!!");
@@ -293,5 +296,5 @@ public class Main
 		
 	}
 	
-	//======
+	//============
 }
